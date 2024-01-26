@@ -6,11 +6,11 @@ public class Player : Character
     public Player(string name, AttackType attackType, int maxHP, Inventory inventoryItem, CoreGame coreGame, int damage = 1)
     {
         Name = name;
-        this.attackType = attackType;
+        this._AttackType = attackType;
         MaxHP = maxHP;
         HP = MaxHP;
         Damage = damage;
-        this.inventory = inventoryItem;
+        this._Inventory = inventoryItem;
     }
 
     public override string ToString()

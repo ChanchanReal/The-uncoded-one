@@ -6,7 +6,7 @@ public class BossMonster : Character
     {
         HP = hp;
         MaxHP = HP;
-        this.attackType = attackType;
+        this._AttackType = attackType;
     }
 
     public override int DamageDealt()

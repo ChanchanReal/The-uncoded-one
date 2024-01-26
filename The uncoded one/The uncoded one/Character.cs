@@ -1,19 +1,21 @@
 
 public abstract class Character
 {
-    public IAction? actions;
+    public IAction? _Actions;
 
-    public AttackType attackType;
-    public  int HP {get; set;} = 1;
-    public int MaxHP {get; set;} = 1;
-    public int Damage {get; set;}
-    public Inventory? inventory;
-    public CoreGame coreGame;
+    public AttackType _AttackType;
+    public int HP { get; set; } = 1;
+    public int MaxHP { get; set; } = 1;
+    public int Damage { get; set; }
+
+    public EquipmentGear CharacterGear { get; set; } = EquipmentGear.Nothing;
+    public Inventory? _Inventory;
+    public CoreGame _CoreGame;
 
     public void SetAction(IAction action)
     {
         if(action is not null)
-        this.actions = action;
+        this._Actions = action;
     }
     public virtual int DamageDealt()
     {
@@ -21,15 +23,33 @@ public abstract class Character
     }
     public void Action(Character character, Character target)
     {
-        actions?.Start(character, target);
+        _Actions?.Start(character, target);
     }
     public void ShowItem()
     {
-        Console.WriteLine(inventory?.ToString());
+        Console.WriteLine(_Inventory?.ToString());
+    }
+
+    public void EquipGear(Item equipment)
+    {
+        if(CharacterGear != null)
+        {
+            Console.WriteLine($"{CharacterGear.ToString()} is been Unequipped. ");
+            
+            if(equipment.ToString() == "Sword") 
+            {
+                CharacterGear = EquipmentGear.Sword;
+            }
+
+            if (equipment.ToString() == "Dagger")
+            {
+                CharacterGear = EquipmentGear.Dagger;
+            }
+            Console.WriteLine($"{equipment.ToString()} is been EQUIPPED \n");
+        }
     }
     
 }
-
 public class Inventory
 {
     public List<Item> items = new List<Item>();
@@ -47,3 +67,4 @@ public class Inventory
     }
 }
 
+public enum EquipmentGear { Sword , Dagger, Nothing}

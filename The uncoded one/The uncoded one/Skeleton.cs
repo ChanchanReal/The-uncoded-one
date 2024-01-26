@@ -7,8 +7,16 @@ public class Skeleton : Character
         attackType = AttackType.Bone_Crunch;
         MaxHP = hp;
         HP = MaxHP;
-
     }
+
+    public Skeleton(int hp, AttackType attackType, EquipmentGear equipment)
+    {
+        attackType = AttackType.Bone_Crunch;
+        MaxHP = hp;
+        HP = MaxHP;
+        CharacterGear = equipment;
+    }
+
     public override int DamageDealt()
     {
         return Damage = rand.Next(2);
